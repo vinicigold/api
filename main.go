@@ -13,10 +13,15 @@ func main() {
 
 	fiber := fiber.New()
 	fiber.Use(cors.New())
-	fiber.Post("/user", handler.Adduser)
-	fiber.Get("/users", handler.Getuser)
-	fiber.Delete("/user", handler.Deleteuser)
-	fiber.Put("/up", handler.Updateuser)
+	fiber.Get("/countuser", handler.Countuser)
+	fiber.Post("/adduser", handler.Adduser)
+	fiber.Get("/getusers", handler.Getuser)
+	fiber.Delete("/deluser", handler.Deleteuser)
+	fiber.Put("/upuser", handler.Updateuser)
+	fiber.Post("/addemp", handler.Addemp)
+	fiber.Get("/getemps", handler.Getemps)
+	fiber.Post("/addadmin", handler.Addadm)
+	fiber.Get("/getadmin", handler.Getadm)
 
 	fiber.Listen(":3002")
 }
