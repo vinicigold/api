@@ -7,9 +7,9 @@ import (
 	"github.com/gofiber/fiber/v2"
 )
 
-func Countuser(a *fiber.Ctx) error {
+func Countemp(a *fiber.Ctx) error {
 	var count int64
-	err := database.Db.Table("users").Count(&count).Error
+	err := database.Db.Table("employees").Count(&count).Error
 	if err != nil {
 		return err
 	}
@@ -29,14 +29,14 @@ func Adduser(a *fiber.Ctx) error {
 	return a.SendStatus(201)
 }
 
-func Getuser(a *fiber.Ctx) error {
+func Getusers(a *fiber.Ctx) error {
 	var users []model.User
 
 	database.Db.Find(&users)
 	return a.JSON(users)
 }
 
-func Deleteuser(a *fiber.Ctx) error {
+func Deluser(a *fiber.Ctx) error {
 
 	var user model.User
 	a.BodyParser(&user)
@@ -76,6 +76,16 @@ func Getemps(a *fiber.Ctx) error {
 
 	database.Db.Find(&emps)
 	return a.JSON(emps)
+}
+
+func Delemp(a *fiber.Ctx) error {
+	var emp model.Employee
+	a.BodyParser(&emp)
+
+	var id = emp.ID
+
+	database.Db.Delete(&emp, id)
+	return a.SendStatus(200)
 }
 
 func Addadm(a *fiber.Ctx) error {
