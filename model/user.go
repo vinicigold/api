@@ -24,3 +24,8 @@ type Employee struct {
 	Phone      int    `gorm:"unique;not null" json:"phone"`
 	Department string `gorm:"not null" json:"department"`
 }
+
+type Dept struct {
+	ID         int    `gorm:"primaryKey;autoIncrement" json:"id"`
+	Department string `gorm:"not null" json:"firstname"`
+}

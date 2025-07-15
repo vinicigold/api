@@ -78,6 +78,13 @@ func Getemps(a *fiber.Ctx) error {
 	return a.JSON(emps)
 }
 
+func Getemp(a *fiber.Ctx) error {
+	var emp model.Employee
+	database.Db.First(&emp)
+
+	return a.JSON(emp)
+}
+
 func Delemp(a *fiber.Ctx) error {
 	var emp model.Employee
 	a.BodyParser(&emp)
@@ -85,6 +92,16 @@ func Delemp(a *fiber.Ctx) error {
 	var id = emp.ID
 
 	database.Db.Delete(&emp, id)
+	return a.SendStatus(200)
+}
+
+func Updemp(a *fiber.Ctx) error {
+
+	var emp model.Employee
+	a.BodyParser(&emp)
+	var id = emp.ID
+
+	database.Db.Where("id = ?", id).Updates(&emp)
 	return a.SendStatus(200)
 }
 

@@ -20,6 +20,8 @@ func main() {
 	fiber.Put("/upuser", handler.Updateuser)
 	fiber.Post("/addemp", handler.Addemp)
 	fiber.Get("/getemps", handler.Getemps)
+	fiber.Get("/getemp/:id", handler.Getemp)
+	fiber.Put("/upemp", handler.Updemp)
 	fiber.Delete("/delemp", handler.Delemp)
 	fiber.Post("/addadmin", handler.Addadm)
 	fiber.Get("/getadmin", handler.Getadm)

@@ -33,4 +33,5 @@ func Connect() {
 	Db.AutoMigrate(&model.User{})
 	Db.AutoMigrate(&model.Admin{})
 	Db.AutoMigrate(&model.Employee{})
+	Db.AutoMigrate(&model.Dept{})
 }
