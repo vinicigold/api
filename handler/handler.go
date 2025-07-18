@@ -26,7 +26,7 @@ func Adduser(a *fiber.Ctx) error {
 	if err != nil {
 		return err
 	}
-	return a.SendStatus(201)
+	return a.SendStatus(200)
 }
 
 func Getusers(a *fiber.Ctx) error {
@@ -68,7 +68,7 @@ func Addemp(a *fiber.Ctx) error {
 	if err != nil {
 		return err
 	}
-	return a.SendStatus(200)
+	return a.JSON(emp)
 }
 
 func Getemps(a *fiber.Ctx) error {
@@ -76,13 +76,6 @@ func Getemps(a *fiber.Ctx) error {
 
 	database.Db.Find(&emps)
 	return a.JSON(emps)
-}
-
-func Getemp(a *fiber.Ctx) error {
-	var emp model.Employee
-	database.Db.First(&emp)
-
-	return a.JSON(emp)
 }
 
 func Delemp(a *fiber.Ctx) error {
@@ -102,7 +95,7 @@ func Updemp(a *fiber.Ctx) error {
 	var id = emp.ID
 
 	database.Db.Where("id = ?", id).Updates(&emp)
-	return a.SendStatus(200)
+	return a.JSON(emp)
 }
 
 func Addadm(a *fiber.Ctx) error {
