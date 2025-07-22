@@ -27,5 +27,10 @@ type Employee struct {
 
 type Dept struct {
 	ID         int    `gorm:"primaryKey;autoIncrement" json:"id"`
-	Department string `gorm:"not null" json:"firstname"`
+	Department string `gorm:"unique;not null" json:"department"`
+}
+
+type Log struct {
+	Username string
+	Password string
 }
